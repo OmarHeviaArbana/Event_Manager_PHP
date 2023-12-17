@@ -1,103 +1,177 @@
 # Event_Manager_PHP
 
-El reto consiste en desarrollar un sitio web en Drupal. El sitio web consistirá en un directorio de eventos culturales para ayuntamientos que ofrezca a los ciudadanos una plataforma para descubrir y participar en eventos culturales de la ciudad.
-
-La implementación se basa en un tipo de contenido personalizado en Drupal llamado "Evento Cultural" con campos como nombre, fecha, descripción y categoría.
-A partir de este tipo de contenido se tendrá que crear un calendario interactivo y opciones de búsqueda avanzada que permitan a los usuarios mantenerse informados acerca de nuevas actividades y explorar eventos según sus preferencias, respectivamente.. El sitio complementará este núcleo de funcionalidades con otras auxiliares como compartición en redes sociales, escritura de comentarios, etc.
-
-Los requisitos del reto son los siguientes:
+Se propone crear un gestor básico de eventos culturales almacenados en una base de datos real. A continuación se indican los requisitos fundamentales que debe cumplir el gestor que queremos desarrollar.
 
 # R1. 
 
-Creación de un tipo de contenido personalizado: Configurar un tipo de contenido personalizado llamado "Evento Cultural" que incluya campos esenciales como nombre del evento, fecha, hora, descripción, ubicación, imagen destacada y categoría. Además, se deberá considerar la inclusión de campos adicionales según las necesidades específicas de los eventos culturales.
+Como estado inicial del sitio web, publicaremos al menos 10 eventos culturales, de los cuales al menos 5 de ellos serán eventos reales.
 
 # R2. 
 
-Búsqueda y filtrado avanzado: Configurar opciones de filtrado avanzado para permitir a los usuarios buscar eventos por categoría (por ejemplo, música, arte o teatro, entre otros), fecha, ubicación y palabras clave. Utilizar el módulo "Views" para crear una página con un sistema de filtrado intuitivo.
+El sitio web permitirá añadir nuevos eventos culturales y también editar los eventos culturales existentes.
 
 # R3. 
 
-Listado de ubicaciones: Mostrar una lista detallada de ubicaciones de eventos, incluyendo direcciones y detalles relevantes. Si se desean mapas, se pueden incluir en las páginas de eventos específicos.
+El portal tendrá un menú visible en todas las páginas del sitio web. El menú tendrá las siguientes opciones:
+
+Home. Página de inicio. Muestra un listado de cinco eventos culturales aleatorios (actividad 3). Permite paginación de 5 elementos. (index.php)
+
+Act_2. Muestra el resultado de la actividad 2. (activity_2.php)
+
+Eventos. Muestra una lista de todos los eventos. No es necesario paginar la lista. En caso de estar logueado, si se selecciona un evento de la lista, se permitirá editar cualquiera de sus campos, tal como se indica en la actividad 9. (events.php)
+
+API. Acceso a la API, tal como se pide en la actividad 8, que muestra el resultado en formato json. (api/events)
+Login. Muestra el formulario de login. Sólo se mostrará cuando el usuario no está logueado. (login.php)
+
+Crear evento. Muestra un formulario que permite crear un nuevo evento cultural (todos los campos son obligatorios). Sólo se mostrará cuando el usuario está logueado. (create.php)
+
+Logout. Cierra la sesión del usuario y redirige a la página de inicio. Sólo se mostrará cuando el usuario está logueado. (logout.php)
 
 # R4. 
 
-Gestión de usuarios y roles: Crear el rol de usuario “organizador de eventos", con permisos específicos para la publicación y gestión de eventos. Los organizadores de eventos deben poder añadir y administrar sus propios eventos.
+Utilizaremos una base de datos sql para almacenar los eventos. Trabajaremos con MySQL tanto en local (XAMPP o equivalente) como en el servidor remoto de pruebas.
 
-# R5. 
+Cada evento cultural dispondrá de los siguientes campos: identificador único (número), nombre del evento, fecha, hora, descripción, ubicación, imagen y categoría. 
 
-Comentarios: Habilitar la función de comentarios en las páginas de eventos para que los usuarios puedan expresar sus opiniones.
+Notas:
 
-# R6. 
+La fecha y la hora se deberán guardar en formato timestamp.
 
-Integración de redes sociales: Agregar botones de compartir en redes sociales en las páginas de eventos para que los usuarios puedan promover los eventos en sus perfiles de redes sociales, como Facebook y Twitter. En el caso de utilizar algún módulo contribuido justificar su elección.
+Las imágenes pueden estar almacenadas en cualquier localización del servidor. Para definir los campos de la imagen en la base de datos se ha de tener en cuenta que, según la actividad 9, se debe poder subir una imagen al servidor.
 
-# R7. 
+La categoría será un campo que sólo podrá contener determinados valores, por ejemplo música, arte o teatro, entre otros.
 
-Páginas informativas: Crear páginas informativas adicionales, como "Acerca de nosotros" y "Preguntas frecuentes", para proporcionar a los visitantes información sobre el funcionamiento del directorio y responder a preguntas comunes.
+Para simplificar, en la ubicación se guardará sólo el nombre del recinto, por ejemplo “Teatre Grec”, y será un campo de texto.
 
-# R8. 
 
-Eventos destacados: Destacar cinco  eventos especiales en la página de inicio del directorio y configurar un sistema de rotación para mostrar una variedad de eventos destacados a lo largo del tiempo.
+# Actividades
+A partir de este caso de estudio, deberás realizar las siguientes actividades.
 
-# R9. 
+# Actividad 1. Creación de la base de datos
 
-Una API REST de consulta que permita obtener toda la información en formato json. Debe permitir la paginación de los resultados. La url de consulta debe ser /api/eventos. No es necesario poder añadir o modificar contenidos es una API solo de lectura.
+En primer lugar, crearemos la base de datos que contendrá una tabla para almacenar los eventos culturales. Cada campo de esta tabla será de un tipo de datos que cumpla con los requisitos de R4. Se deberá justificar la elección de los tipos de datos elegidos.
 
-# R10. 
+A continuación, insertaremos en la base de datos diez eventos culturales, de los cuales al menos cinco eventos han de ser reales (R1).
 
-El menú deberá tener las siguientes opciones
+(Explicación de cómo se ha realizado la actividad y capturas de pantalla ilustrativas. 0,5 puntos)
 
-Inicio (donde se muestran solo los eventos destacados)
-Eventos. Listado de eventos filtrable
-Ubicaciones. Listado de ubicaciones
-Acerca de nosotros
-Preguntas frecuentes
-API. Accede a la URL de la API en una nueva pestaña, tal como se pide en el apartado j. 
+
+# Actividad 2. Acceso a la base de datos
+
+Seguidamente, crearemos un script en PHP llamado activity_2.php que muestre por pantalla todos los campos de un evento cultural cualquiera de la base de datos (podéis elegir el evento que queráis).
+
+
+
+# Actividad 3. Creación de la página de inicio
+
+A continuación crearemos la página de inicio del sitio web. Este archivo debe llamarse index.php. La página mostrará una lista de cinco eventos culturales elegidos de forma aleatoria. De este modo, cada vez que se cargue la página de inicio deberían mostrarse cinco eventos diferentes.
+
+Para cada evento, se mostrarán los siguientes campos. 
+
+Nombre del evento cultural
+Fecha del evento, en formato DD/MM/YYYY, por ejemplo 18/11/2023
+Ubicación
+Categoría
+Las primeras 40 palabras de la descripción del evento cultural, en el caso que el texto sea más largo.
+La imagen
+La página de inicio ha de permitir paginación de 5 elementos. En las siguientes páginas deberán mostrarse el resto de eventos culturales (sin repetición de eventos).
+
+(Explicación de cómo se ha realizado la actividad y capturas de pantalla ilustrativas. 1,5 puntos)
+
+# Actividad 4. Creación de las páginas para los eventos culturales
+
+A continuación crearemos la página única de cada evento cultural. Utilizaremos el archivo post.php, al cual se deberá pasar el identificador del evento que se quiera visualizar. Por ejemplo, post.php?id=5 mostrará la página del evento cuyo identificador es 5.
+
+Además, añadiremos un enlace en el título de cada evento en la página de inicio (index.php, desarrollado en la actividad anterior) que nos lleve a la página única de este evento, donde se mostrarán todos los campos y la descripción completa.
+
+(Explicación de cómo se ha realizado la actividad y capturas de pantalla ilustrativas. 1 punto)
+
+
+# Actividad 5. Ordenación y filtro de los eventos culturales
+
+En la página de inicio añadiremos opciones para poder ordenar los eventos culturales por fecha y también por título (orden alfabético). En ambos casos con las opciones creciente y decreciente.
+
+Ordenaremos los eventos utilizando la función usort de php.
+
+También añadiremos opciones que nos permitan filtrar los eventos por categoría y fecha.
+
+(Explicación de cómo se ha realizado la actividad y capturas de pantalla ilustrativas. 1 punto)
+
+
+# Actividad 6. Menú
+
+Crearemos un menú (horizontal, vertical o bien otro tipo de menú) con enlaces a las secciones descritas en R3.
+
+(Explicación de cómo se ha realizado la actividad y capturas de pantalla ilustrativas. 0,5 puntos)
+
  
+# Actividad 7. API
 
-### Tareas
-Dados estos requisitos del proyecto, elegimos como plataforma Drupal 10, ya que se adapta mejor a los requerimientos que otros CMS como WordPress, al ofrecer funcionalidad específica para definir fácilmente la estructura de los contenidos. Utilizando esta plataforma se pide realizar las siguientes tareas:
+Crearemos una API que exponga los campos de todos los eventos culturales en formato JSON.
 
-# a) Instalar Drupal en la máquina local y comprobar su funcionamiento correcto. Deberás describir los pasos que has realizado y adjuntar capturas de pantalla para ilustrar los pasos.
-(Máximo 300 palabras y capturas de pantalla ilustrativas, 0.5  puntos)
+La ruta será /api/events
 
+Recordar mostrar, además, una captura del resultado.
 
-# b) Crear un tipo de contenido personalizado llamado "Evento cultural" con campos para el nombre, la fecha y hora, descripción, ubicación, categoría. imagen destacada y palabras clave.
-La categoría y las ubicaciones deben implementarse como taxonomías en Drupal. Añadir 20 eventos ficticios o reales, a mano o utilizando algún módulo de generación de contenidos justificando su elección.
-(Máximo 200 palabras y capturas de pantalla ilustrativas, 1 punto)
+(Explicación de cómo se ha realizado la actividad y capturas de pantalla ilustrativas. 1 punto)
 
 
-# c) Crear una vista en forma de página que permita al usuario filtrar en la web los eventos por categoría, fecha, ubicación o palabras clave.
-(Máximo 200 palabras y capturas de pantalla ilustrativas, 1 punto)
+# Actividad 8. Login
+
+Crearemos una página llamada login.php que muestre un formulario de login. El formulario constará de un campo de texto para username y otro para password (ambos campos serán obligatorios), así como de un botón para enviar los datos.
+
+Para simplificar y personalizar este reto, sólo habrá un usuario registrado que deberá ser vuestro nombre de usuario de la UOC. La contraseña será igual al nombre de usuario.
+
+Las credenciales se guardarán en la base de datos del back-end (servidor) en una nueva tabla llamada “users” y que tendrá los siguientes campos: username y password.
+
+Para acceder a estos campos, se deberán emplear técnicas que eviten el ataque “SQL injection”. Este ataque consiste en la manipulación maliciosa de campos en una base de datos mediante la inserción de código SQL no autorizado. En el siguiente recurso podéis ver algunos ejemplos:
+
+https://www.w3schools.com/sql/sql_injection.asp Links to an external site.
+
+Y más información sobre cómo prevenirlo en PHP:
+
+https://www.acunetix.com/blog/articles/prevent-sql-injection-vulnerabilities-in-php-applications/ Links to an external site.
+
+Por seguridad, en el backend el password se guardará cifrado usando el algoritmo Blowfish y la función PHP password_hash(). Esta función genera un hash distinto en cada llamada. Podéis obtener más información sobre esta función de encriptación en el portal oficial de PHP:
+
+https://www.php.net/manual/es/function.password-hash.php Links to an external site.
+
+A modo de ejemplo, si vuestro nombre de usuario de la UOC fuese “johndoe”, la contraseña también sería “johndoe” pero en la base de datos deberíamos guardar:
+
+    Username: "johndoe"
+
+    Password: "$2y$10$5Zz21uQFWi8PpBaTfSxZNO6MSiZYnO1TAG9iIFCrP1h8fT8NB6cP6"   
+
+Nótese que el password es uno de los hashes resultantes de ejecutar la función PHP comentada anteriormente, es decir:
+
+password_hash("johndoe", PASSWORD_BCRYPT);
+
+(podéis ejecutar este comando en una consola interactiva de PHP)
+
+Si el usuario se valida correctamente, en todas las páginas se mostrará en un lugar visible el mensaje "Hola, < contenido del campo Username >" y la opción de menú logout (logout.php), que permitirá cerrar la sesión y redirigirá a la página de inicio.
+
+En caso de introducir credenciales no válidas, se mostrará un mensaje al respecto.
+
+En la documentación añadiremos, además, capturas del resultado al loguearse con el usuario registrado.
+
+(Explicación de cómo se ha realizado la actividad y capturas de pantalla ilustrativas. 1,5 puntos)
+
+ 
+# Actividad 9. Creación y edición de eventos culturales
+
+El sitio web permitirá añadir nuevos eventos culturales y también editar los existentes, tal como se indica en R2. Esta opción estará sólo disponible para usuarios registrados.
+
+Las opciones de menú que permiten añadir y editar eventos están descritas en R3.
+
+(Explicación de cómo se ha realizado la actividad y capturas de pantalla ilustrativas. 1 punto)
 
 
-# d) Crear una vista que sea un listado de las ubicaciones de los eventos. Una ubicación además del nombre puede tener un campo de dirección y código postal, por ejemplo “Teatre grec, Passeig de Santa Madrona, 08038”
-(Máximo 200 palabras y capturas de pantalla ilustrativas, 1 punto)
+# Actividad 10. Publicación
 
+Publicaremos el sitio web en el servidor de la UOC comprobando que funciona correctamente toda la funcionalidad implementada (listado de eventos culturales, la página única de cada uno de ellos, el sistema de autenticación, API, etc).
 
-# e) Crear un rol “gestor de eventos” que solo tenga permiso para crear y editar sus propios eventos. Comprobar su funcionamiento y crear dos eventos utilizando este rol.
-(Máximo 200 palabras y capturas de pantalla ilustrativas, 1 punto)
+Indicaremos la URL para acceder al sitio web.
 
+(Explicación de cómo se ha realizado la actividad y capturas de pantalla ilustrativas. 1 punto)
 
-# f) Permitir la posibilidad de añadir comentarios en los eventos por parte de los visitantes de la web.
-(Máximo 200 palabras y capturas de pantalla ilustrativas, 0.5 puntos)
-
-
-# g) Agregar botones en la página de cada evento para compartir en las redes sociales (por ejemplo facebook o twitter). Escoger algún módulo contribuido y justificar su elección.
-(Máximo 200 palabras y capturas de pantalla ilustrativas, 0.5 puntos)
-
-
-# h) Crear dos páginas informativas que deben aparecer en el menú. “Acerca de nosotros” y “Preguntas frecuentes”. El texto puede ser ficticio.
-(Máximo 200 palabras y capturas de pantalla ilustrativas, 0.5 puntos)
-
-
-i) En la página de inicio deben aparecer 5 eventos destacados. El orden debe ser aleatorio. Deben mostrar al menos el título, la fecha del evento y la imagen y un enlace para ver los detalles en la página única de cada evento.
-(Máximo 200 palabras y capturas de pantalla ilustrativas, 1 punto)
-
-
-j) Crear una API REST de consulta que devuelva toda la información de los eventos en formato json, sin autenticación. La url debe ser api/eventos.
-(Máximo 200 palabras y capturas de pantalla ilustrativas, 1 punto)
-
-
-k) Publicar el sitio web en el servidor de la UOC. Confirmar el funcionamiento correcto.Comentar los pasos seguidos para este propósito.
-(Máximo 200 palabras y capturas de pantalla ilustrativas, 2 puntos)
+ 
