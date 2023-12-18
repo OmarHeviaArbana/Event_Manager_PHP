@@ -5,7 +5,7 @@ Además, añadiremos un enlace en el título de cada evento en la página de ini
 
 
 
-<?php
+ <?php
 include("db.php");
 
 $callEvents=$connection->prepare("SELECT * FROM `tabla_eventos`");
@@ -89,7 +89,7 @@ FInalmente, repetimos el proceso para cada una de las tablas y lo parseamos medi
                <a class="nav-link" href="events.php">Eventos</a>
            </li> 
            <li class="nav-item">
-               <a class="nav-link active" href="post.php">API<span class="visually-hidden">(current)</span></a>
+               <a class="nav-link active" href="api/events">API<span class="visually-hidden">(current)</span></a>
            </li> 
            <li class="nav-item">
                <a class="nav-link" href="create.php">Crear evento</a>

@@ -20,7 +20,7 @@ La página de inicio ha de permitir paginación de 5 elementos. En las siguiente
 <?php
 include("db.php");
 
-$call=$connection->prepare("SELECT * FROM `tabla_eventos`");
+$call=$connection->prepare("SELECT *,(SELECT nombre FROM tabla_categorias WHERE tabla_categorias.id=tabla_eventos.idcategoria limit 1) as categoria FROM   `tabla_eventos`");
 $call->execute();
 $event_tbl_list=$call->fetchAll(PDO::FETCH_ASSOC);
 
@@ -29,7 +29,7 @@ $event_tbl_list=$call->fetchAll(PDO::FETCH_ASSOC);
 <html lang="en">
 
 <head>
-  <title>Title</title>
+  <title>Gestor Eventos - Eventos</title>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -44,7 +44,7 @@ $event_tbl_list=$call->fetchAll(PDO::FETCH_ASSOC);
    <nav class="navbar navbar-expand navbar-light bg-light">
    <ul class="nav nav-tabs">
            <li class="nav-item">
-               <a class="nav-link" href="#" aria-current="page">Home</a>
+               <a class="nav-link" href="index.php" aria-current="page">Home</a>
            </li>
            <li class="nav-item">
                <a class="nav-link" href="activity_2.php">Act_2</a>
@@ -68,9 +68,52 @@ $event_tbl_list=$call->fetchAll(PDO::FETCH_ASSOC);
    </nav>
   </header>
   <main>
-   
-  <h1>events</h1>
+    <div style="width: 80%; margin: 20px auto">
+      <h1>Listado Eventos</h1>
+    </div>
   
+    <div class="card " style="width: 80%; margin: 20px auto">
+      <div class="card-header">
+      <button onclick="location.href='create.php'" type="button" class="btn btn-primary align-items-end">Crear Evento</button>
+
+  </div>
+<div class="card-body">
+  <div class="table-responsive"></div>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Nombre</th>
+              <th scope="col">Descripción</th>
+              <th scope="col">Categoría</th>
+              <th scope="col">Fecha</th>
+              <th scope="col">Hora</th>
+              <th scope="col">Ubicación</th>
+              <th scope="col">Imagen</th>
+              <th scope="col">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php foreach ($event_tbl_list as $event) { ?>
+              <tr>
+                
+                  <td scope="col"><?php echo $event['nombre'];?></td>
+                  <td scope="col"><?php echo $event['descripcion'];?></td>
+                  <td scope="col"><?php echo $event['categoria'];?></td>
+                  <td scope="col"><?php echo $event['fecha'];?></td>
+                  <td scope="col"><?php echo $event['hora'];?></td>
+                  <td scope="col"><?php echo $event['ubicacion'];?></td>
+                  <td scope="col"><?php echo $event['imagen'];?></td>
+                  <td scope="col">
+                    
+                    <button onclick="location.href='edit.php?eventID=<?php echo $event['id']?>'" type="button" class="btn btn-success">Editar</button>
+                  </td>
+              </tr>
+              <?php } ?>
+          </tbody>
+        </table>
+            </div>
+            </div>
+    </div>
   </main>
   <footer>
     <!-- place footer here -->

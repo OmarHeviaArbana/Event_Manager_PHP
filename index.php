@@ -23,7 +23,7 @@ $event_tbl_list=$call->fetchAll(PDO::FETCH_ASSOC);
 <html lang="en">
 
 <head>
-  <title>Title</title>
+  <title>Gestor Eventos - Home</title>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -38,7 +38,7 @@ $event_tbl_list=$call->fetchAll(PDO::FETCH_ASSOC);
    <nav class="navbar navbar-expand navbar-light bg-light">
    <ul class="nav nav-tabs">
            <li class="nav-item">
-               <a class="nav-link active" href="#" aria-current="page">Home<span class="visually-hidden">(current)</span></a>
+               <a class="nav-link active" href="index.php" aria-current="page">Home<span class="visually-hidden">(current)</span></a>
            </li>
            <li class="nav-item">
                <a class="nav-link" href="activity_2.php">Act_2</a>
@@ -47,7 +47,7 @@ $event_tbl_list=$call->fetchAll(PDO::FETCH_ASSOC);
                <a class="nav-link" href="events.php">Eventos</a>
            </li> 
            <li class="nav-item">
-               <a class="nav-link" href="post.php">API</a>
+               <a class="nav-link" href="/api/events/index.php">API</a>
            </li> 
            <li class="nav-item">
                <a class="nav-link" href="create.php">Crear evento</a>
@@ -62,12 +62,18 @@ $event_tbl_list=$call->fetchAll(PDO::FETCH_ASSOC);
    </nav>
   </header>
   <main>
-    <div class="container">
-        <div class="row align-items-start">
-            <div class="row">
+    <div style="width: 80%; margin: 20px auto">
+      <h1>Crear Evento</h1>
+    </div>
+  
+    <div class="container" style="width: 80%; margin: 20px auto">
+        <div class="row justify-content-around">
+       
+            
+           
                 <?php foreach ($event_tbl_list as $event) { ?>
                    
-                <div class="card" style="width: 34rem;">
+                <div class="card" style="width: 20rem; margin-bottom: 40px">
                     <img src="<?php echo $event['imagen']; ?>" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $event['nombre']; ?></h5>
@@ -76,7 +82,7 @@ $event_tbl_list=$call->fetchAll(PDO::FETCH_ASSOC);
                     </div>
                 </div>
                 <?php } ?>
-            </div>
+            
         </div>
     </div>
   

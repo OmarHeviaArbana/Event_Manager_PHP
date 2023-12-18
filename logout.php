@@ -42,7 +42,7 @@ $event_tbl_list=$call->fetchAll(PDO::FETCH_ASSOC);
    <nav class="navbar navbar-expand navbar-light bg-light">
        <ul class="nav nav-tabs">
            <li class="nav-item">
-               <a class="nav-link" href="#" aria-current="page">Home</a>
+               <a class="nav-link" href="index.php" aria-current="page">Home</a>
            </li>
            <li class="nav-item">
                <a class="nav-link" href="activity_2.php">Act_2</a>
