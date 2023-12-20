@@ -1,3 +1,3 @@
 <?php
-  header("Location:events/index.php");
+  header("Location:./events/index.php");
 ?> 

@@ -63,7 +63,7 @@ $logged = $_SESSION['logued'];
     <div class="card " style="width: 80%; margin: 20px auto">
       <div class="card-header">
         <?php if($logged ==true){?>
-        <button onclick="location.href='create.php'" type="button" class="btn btn-primary align-items-end">Crear Evento</button>
+        <button onclick="location.href='./create.php'" type="button" class="btn btn-primary align-items-end">Crear Evento</button>
         <?php } ?>
       </div>
       <div class="card-body">
@@ -98,7 +98,7 @@ $logged = $_SESSION['logued'];
                     </td>
                     <td >
                       <?php if($logged ==true){?>
-                        <button onclick="location.href='edit.php?eventID=<?php echo $event['id']?>'" type="button" class="btn btn-success">Editar</button>
+                        <button onclick="location.href='./edit.php?eventID=<?php echo $event['id']?>'" type="button" class="btn btn-success">Editar</button>
                         <?php } ?>
                     </td>
                 </tr>

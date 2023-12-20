@@ -38,7 +38,7 @@ if($_POST){
 
   $call->execute();
 
-  header("Location:events.php");
+  header("Location:./events.php");
 }
 
 
@@ -139,7 +139,7 @@ $category_tbl_list=$call->fetchAll(PDO::FETCH_ASSOC);
           </select>
         </div>
         <button type="submit" class="btn btn-primary">Crear Evento</button>
-        <button onclick="location.href='events.php'" type="button" class="btn btn-danger ml-2">Cancelar</button>
+        <button onclick="location.href='./events.php'" type="button" class="btn btn-danger ml-2">Cancelar</button>
       </form>
     </div>
   </div>

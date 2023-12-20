@@ -5,8 +5,7 @@ session_start();
 if($_POST) {
  
 include("db.php");
-
-  $call=$connection->prepare("SELECT *,count(*) as usuarios FROM  `tabla_users` WHERE username=:username AND password=:password");
+   $call=$connection->prepare("SELECT *,count(*) as usuarios FROM  `tabla_users` WHERE username=:username AND password=:password");
 
   $username=$_POST["username"];
   $password=$_POST["password"];
@@ -20,12 +19,13 @@ include("db.php");
   if($users_tbl_list["usuarios"]==1) {
     $_SESSION['username']= $users_tbl_list["username"];
     $_SESSION['logued']= true;
-    header("Location:index.php");
+    header("Location:./events/index.php");
     } else {
       $message="Error: Usuario o contraseña incorrecto";
-  }
+  } 
 }
 ?> 
+
 <!doctype html>
 <html lang="en">
 

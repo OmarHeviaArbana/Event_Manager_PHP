@@ -64,9 +64,13 @@ $logged = $_SESSION['logued'];
   </header>
   <main> 
     <div style="width: 80%; margin: 20px auto">
+    <?php if($logged ==true){?>
+
       <div class="d-flex justify-content-center">
         <h3 class="fw-bold">Bienvenid@ <?php echo $_SESSION['username'];?></h3>
       </div>
+      <?php } ?>
+
     </div>
     <div style="width: 80%; margin: 20px auto">
       <h1>Eventos Destacados</h1>
