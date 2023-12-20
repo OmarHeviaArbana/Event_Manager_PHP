@@ -102,31 +102,31 @@ $category_tbl_list=$call->fetchAll(PDO::FETCH_ASSOC);
    <nav class="navbar navbar-expand navbar-light bg-light">
  <ul class="nav nav-tabs">
            <li class="nav-item">
-               <a class="nav-link" href="<?php echo $url_base?>events/index.php" aria-current="page">Home</a>
+               <a class="nav-link" href="./index.php" aria-current="page">Home</a>
            </li>
            <li class="nav-item">
-               <a class="nav-link" href="<?php echo $url_base?>activity_2.php">Act_2</a>
+               <a class="nav-link" href="../activity_2.php">Act_2</a>
            </li> 
            <li class="nav-item">
-               <a class="nav-link active" href="<?php echo $url_base?>events/events.php">Eventos<span class="visually-hidden">(current)</span></a>
+               <a class="nav-link active" href="./events.php">Eventos<span class="visually-hidden">(current)</span></a>
            </li> 
            <li class="nav-item">
-               <a class="nav-link" href="<?php echo $url_base?>/api/events/index.php">API</a>
+               <a class="nav-link" href="../api/events/index.php">API</a>
            </li> 
            <?php if($logged ==true){?>
            <li class="nav-item">
-               <a class="nav-link" href="<?php echo $url_base?>events/create.php">Crear evento<span class="visually-hidden">(current)</span></a>
+               <a class="nav-link" href="./create.php">Crear evento<span class="visually-hidden">(current)</span></a>
            </li> 
            <?php } ?>
            <?php if($logged ==false){?>
            <li class="nav-item">
-               <a class="nav-link" href="<?php echo $url_base?>login.php">Login</a>
+               <a class="nav-link" href="../login.php">Login</a>
            </li> 
            <?php } ?>
          
            <?php if($logged ==true){?>
            <li lass="nav-item">
-               <a class="nav-link" href="<?php echo $url_base?>logout.php">Cerrar Sesión</a>
+               <a class="nav-link" href="../logout.php">Cerrar Sesión</a>
            </li>  
            <?php } ?>
        </ul>

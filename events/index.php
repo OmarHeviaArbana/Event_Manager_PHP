@@ -11,7 +11,6 @@ $event_tbl_list=$call->fetchAll(PDO::FETCH_ASSOC);
 
 session_start();
 $logged = $_SESSION['logued']; 
-$url_base="http://localhost/Event_Manager_PHP/"
 
 ?> 
 <!doctype html>
@@ -33,31 +32,31 @@ $url_base="http://localhost/Event_Manager_PHP/"
    <nav class="navbar navbar-expand navbar-light bg-light">
    <ul class="nav nav-tabs">
            <li class="nav-item">
-               <a class="nav-link active" href="<?php echo $url_base?>events/index.php" aria-current="page">Home<span class="visually-hidden">(current)</span></a>
+               <a class="nav-link active" href=">./index.php" aria-current="page">Home<span class="visually-hidden">(current)</span></a>
            </li>
            <li class="nav-item">
-               <a class="nav-link" href="<?php echo $url_base?>activity_2.php">Act_2</a>
+               <a class="nav-link" href="../activity_2.php">Act_2</a>
            </li> 
            <li class="nav-item">
-               <a class="nav-link" href="<?php echo $url_base?>events/events.php">Eventos</a>
+               <a class="nav-link" href="./events.php">Eventos</a>
            </li> 
            <li class="nav-item">
-               <a class="nav-link" href="<?php echo $url_base?>/api/events/index.php">API</a>
+               <a class="nav-link" href="../api/events/index.php">API</a>
            </li> 
            <?php if($logged ==true){?>
            <li class="nav-item">
-               <a class="nav-link" href="<?php echo $url_base?>events/create.php">Crear evento</a>
+               <a class="nav-link" href="./create.php">Crear evento</a>
            </li> 
            <?php } ?>
            <?php if($logged ==false){?>
            <li class="nav-item">
-               <a class="nav-link" href="<?php echo $url_base?>login.php">Login</a>
+               <a class="nav-link" href="../login.php">Login</a>
            </li> 
            <?php } ?>
          
            <?php if($logged ==true){?>
            <li lass="nav-item">
-               <a class="nav-link" href="<?php echo $url_base?>logout.php">Cerrar Sesión</a>
+               <a class="nav-link" href="../logout.php">Cerrar Sesión</a>
            </li>  
            <?php } ?>
        </ul>
@@ -88,7 +87,7 @@ $url_base="http://localhost/Event_Manager_PHP/"
                       <li class="list-group-item"><?php echo $event['fecha']; ?></li>
                       <li class="list-group-item"><?php echo $event['hora']; ?></li>
                     </ul>
-                    <btn onclick="location.href='<?php echo $url_base?>/events/post.php?eventID=<?php echo $event['id']?>'"   class="btn btn-primary my-2">Más Información</btn>
+                    <btn onclick="location.href='./post.php?eventID=<?php echo $event['id']?>'"   class="btn btn-primary my-2">Más Información</btn>
                 </div>
             </div>
           <?php } ?>
