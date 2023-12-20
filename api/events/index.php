@@ -6,7 +6,7 @@ Además, añadiremos un enlace en el título de cada evento en la página de ini
 
 
  <?php
-include("db.php");
+include("../../db.php");
 
 $callEvents=$connection->prepare("SELECT * FROM `tabla_eventos`");
 $callEvents->execute();
@@ -65,7 +65,7 @@ FInalmente, repetimos el proceso para cada una de las tablas y lo parseamos medi
 <html lang="en">
 
 <head>
-  <title>Title</title>
+  <title>Gestor Eventos - API</title>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -79,27 +79,34 @@ FInalmente, repetimos el proceso para cada una de las tablas y lo parseamos medi
   <header>
    <nav class="navbar navbar-expand navbar-light bg-light">
  <ul class="nav nav-tabs">
-           <li class="nav-item">
-               <a class="nav-link" href="index.php" aria-current="page">Home</a>
+ <li class="nav-item">
+               <a class="nav-link" href="<?php echo $url_base?>events/index.php" aria-current="page">Home</a>
            </li>
            <li class="nav-item">
-               <a class="nav-link" href="activity_2.php">Act_2</a>
+               <a class="nav-link" href="<?php echo $url_base?>activity_2.php">Act_2</a>
            </li> 
            <li class="nav-item">
-               <a class="nav-link" href="events.php">Eventos</a>
+               <a class="nav-link " href="<?php echo $url_base?>events/events.php">Eventos</a>
            </li> 
            <li class="nav-item">
-               <a class="nav-link active" href="api/events">API<span class="visually-hidden">(current)</span></a>
+               <a class="nav-link active" href="<?php echo $url_base?>/api/events/index.php">API<span class="visually-hidden">(current)</span></a>
            </li> 
+           <?php if($logged ==true){?>
            <li class="nav-item">
-               <a class="nav-link" href="create.php">Crear evento</a>
+               <a class="nav-link" href="<?php echo $url_base?>events/create.php">Crear evento</a>
            </li> 
+           <?php } ?>
+           <?php if($logged ==false){?>
            <li class="nav-item">
-               <a class="nav-link" href="login.php">Login</a>
+               <a class="nav-link" href="<?php echo $url_base?>login.php">Login</a>
            </li> 
-           <li class="nav-item">
-               <a class="nav-link" href="logout.php">Logout</a>
-           </li> 
+           <?php } ?>
+         
+           <?php if($logged ==true){?>
+           <li lass="nav-item">
+               <a class="nav-link" href="<?php echo $url_base?>logout.php">Cerrar Sesión</a>
+           </li>  
+           <?php } ?>
        </ul>
    </nav>
   </header>
